@@ -5,7 +5,7 @@ provider "aws" {
 
 # SG 생성 - 8080
 resource "aws_security_group" "allow_8080" {
-  name        = "allow_8080"
+  name        = var.security_group_name
   description = "Allow 8080 inbound traffic and all outbound traffic"
 
   tags = {
@@ -13,13 +13,16 @@ resource "aws_security_group" "allow_8080" {
   }
 }
 
+
+
+
 # SG ingress(인바운드) rule
 resource "aws_vpc_security_group_ingress_rule" "allow_http_8080" {
   security_group_id = aws_security_group.allow_8080.id
   cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 8080
+  from_port         = var.server_port
   ip_protocol       = "tcp"
-  to_port           = 8080
+  to_port           = var.server_port
 }
 
 
