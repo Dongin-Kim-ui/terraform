@@ -14,8 +14,6 @@ resource "aws_security_group" "allow_8080" {
 }
 
 
-
-
 # SG ingress(인바운드) rule
 resource "aws_vpc_security_group_ingress_rule" "allow_http_8080" {
   security_group_id = aws_security_group.allow_8080.id
