@@ -145,6 +145,7 @@ data "aws_ami" "Amazon_Linux_2023_AMI" {
   owners = ["137112412989"] # Canonical
 }
 
+
 resource "aws_instance" "MYEC21" {
   ami                    = data.aws_ami.Amazon_Linux_2023_AMI.id
   instance_type          = "t2.micro"
