@@ -1,0 +1,31 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo "설치 단계 시작"
+      - npm install -g htmlhint  # HTML 린팅 도구 설치
+      
+  pre_build:
+    commands:
+      - echo "빌드 전 단계 시작"
+      - echo "$(date)"
+      - echo "소스 코드 확인"
+      - ls -la
+      
+  build:
+    commands:
+      - echo "빌드 단계 시작"
+      - htmlhint *.html  # HTML 파일 검사
+      
+  post_build:
+    commands:
+      - echo "빌드 후 단계 시작"
+      - echo "빌드 완료 시간: $(date)"
+
+artifacts:
+  files:
+    - '**/*'  # 모든 파일을 아티팩트로 포함
+  base-directory: '.'  # 프로젝트 루트 디렉토리

@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+  
+  pre_build:
+    commands:
+      - echo Pre-build phase started
+      - echo Nothing to do in pre-build
+      
+  build:
+    commands:
+      - echo Build phase started
+      - echo Nothing to build for static HTML
+      
+  post_build:
+    commands:
+      - echo Post-build phase started
+      - echo Copying HTML files to build output
+      - mkdir -p /codebuild/output/src2043122978/src/
+      - cp -r * /codebuild/output/src2043122978/src/
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: /codebuild/output/src2043122978/src 
